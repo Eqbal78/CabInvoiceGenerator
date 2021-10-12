@@ -45,5 +45,21 @@ namespace CabInvoiceGeneratorTest
             Assert.AreEqual(expectedSummary, summary);
 
         }
+
+        /// <summary>
+        /// Test cases for checking calculate average fare
+        /// </summary>
+        [Test]
+        public void GiveMultipleRidesShouldReturnAverageInvoiceSummary()
+        {
+            //Creating Instance of InvoiceGenerator For Normal Rides
+            invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+
+            //Generating Summary for Rides
+            InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
+            InvoiceSummary expectedSummary = new InvoiceSummary(2, 30.0,15);
+            Assert.AreEqual(expectedSummary, summary);
+        }
     }
 }
